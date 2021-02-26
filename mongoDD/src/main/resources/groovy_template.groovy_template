@@ -1,0 +1,9 @@
+import com.afair.groovy.GroovyModuleRule;
+class  GroovyRule implements GroovyModuleRule {
+    boolean run(def data){
+          if(%s)
+          return true;
+          else
+          return false;
+    }
+}

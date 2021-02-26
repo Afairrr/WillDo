@@ -1,0 +1,5 @@
+
+d
+java:S2094	"BRemove this empty class, write its code or make it an "interface".(¸òˆ®ıÿÿÿÿ8©°‡Æê.
+ƒ
+java:S1128"fRemove this unused import 'org.springframework.data.elasticsearch.repository.ElasticsearchRepository'.(ìÄõ8©°‡Æê.

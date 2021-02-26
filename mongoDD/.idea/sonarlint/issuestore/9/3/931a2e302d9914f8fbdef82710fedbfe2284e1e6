@@ -1,0 +1,27 @@
+
+Z
+java:S1118":Add a private constructor to hide the implicit public one.(øåÄ›úÿÿÿÿ8ªµûÙí.
+T
+java:S1444"4Make this "public static passedClassMap" field final(Õ×îôüÿÿÿÿ8«õÔí.
+u
+java:S1104"ZMake groovyTemplate a static final constant or non-public and provide accessors if needed.(Ïï‘Š8¶ÈıÔí.
+}
+java:S1104"]Make groovyClassLoader a static final constant or non-public and provide accessors if needed.(óşÍ±ıÿÿÿÿ8«õÔí.
+o
+java:S3008"ORename this field "PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—’’ıÿÿÿÿ8ıÿˆÚí.
+S
+java:S1874"3Remove this use of "newInstance"; it is deprecated.(®ì¾ şÿÿÿÿ8™¶€Öí.
+O
+java:S1444"4Make this "public static groovyTemplate" field final(Ïï‘Š8¶ÈıÔí.
+W
+java:S1444"7Make this "public static groovyClassLoader" field final(óşÍ±ıÿÿÿÿ8«õÔí.
+J
+java:S1444"*Make this "public static PATH" field final(›—’’ıÿÿÿÿ8ıÿˆÚí.
+z
+java:S1104"ZMake passedClassMap a static final constant or non-public and provide accessors if needed.(Õ×îôüÿÿÿÿ8«õÔí.
+p
+java:S1104"PMake PATH a static final constant or non-public and provide accessors if needed.(›—’’ıÿÿÿÿ8ıÿˆÚí.
+O
+java:S3740"/Provide the parametrized type for this generic.(“ÉÁ‰øÿÿÿÿ8´ÉÆÕí.
+=
+java:S2386"Make this member "protected".(Õ×îôüÿÿÿÿ8«õÔí.

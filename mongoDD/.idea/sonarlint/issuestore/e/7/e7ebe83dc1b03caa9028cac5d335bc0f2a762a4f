@@ -1,0 +1,7 @@
+
+X
+java:S1854R";Remove this useless assignment to local variable "mapList".(ˆ´ÜÄ8ßù•Äê.
+b	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(ıÁ©8€‚ÃÃê.
+I
+java:S1481R",Remove this unused "mapList" local variable.(ˆ´ÜÄ8ßù•Äê.
+Z	java:S106>"9Replace this use of System.out or System.err by a logger.(Ö»°÷øÿÿÿÿ8¹ĞòÀê.

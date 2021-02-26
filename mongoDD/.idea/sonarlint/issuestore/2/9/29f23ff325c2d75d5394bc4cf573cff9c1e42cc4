@@ -1,0 +1,39 @@
+
+j
+java:S1104"OMake DAY a static final constant or non-public and provide accessors if needed.(¶ ‹Ύ8θª΄ήν.
+D
+java:S1444")Make this "public static DAY" field final(¶ ‹Ύ8θª΄ήν.
+G
+java:S1444",Make this "public static MINUTE" field final(―κ Ύ8θª΄ήν.
+G
+java:S1444",Make this "public static SECOND" field final(¶—½υ8θª΄ήν.
+i
+java:S3008"NRename this field "DAY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ ‹Ύ8θª΄ήν.
+U
+java:S1118":Add a private constructor to hide the implicit public one.(Οψμª8θª΄ήν.
+F
+java:S1444"+Make this "public static MONTH" field final(ωΡ…µ8θª΄ήν.
+k
+java:S1104"PMake HOUR a static final constant or non-public and provide accessors if needed.(ΉδΩ8θª΄ήν.
+j
+java:S3008"ORename this field "HOUR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ΉδΩ8θª΄ήν.
+m
+java:S1104"RMake SECOND a static final constant or non-public and provide accessors if needed.(¶—½υ8θª΄ήν.
+E
+java:S1444"*Make this "public static HOUR" field final(ΉδΩ8θª΄ήν.
+p
+java:S1104"PMake YEAR a static final constant or non-public and provide accessors if needed.(δΪώÿÿÿÿ8θª΄ήν.
+l
+java:S1104"QMake MONTH a static final constant or non-public and provide accessors if needed.(ωΡ…µ8θª΄ήν.
+l
+java:S3008"QRename this field "MINUTE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(―κ Ύ8θª΄ήν.
+J
+java:S1444"*Make this "public static YEAR" field final(δΪώÿÿÿÿ8θª΄ήν.
+m
+java:S1104"RMake MINUTE a static final constant or non-public and provide accessors if needed.(―κ Ύ8θª΄ήν.
+k
+java:S3008"PRename this field "MONTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ωΡ…µ8θª΄ήν.
+o
+java:S3008"ORename this field "YEAR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(δΪώÿÿÿÿ8θª΄ήν.
+l
+java:S3008"QRename this field "SECOND" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶—½υ8θª΄ήν.

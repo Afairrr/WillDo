@@ -1,0 +1,36 @@
+server:
+  port: 6702
+spring:
+  data:
+    elasticsearch:
+      client:
+        reactive:
+          username:
+          password:
+          use-ssl:
+    mongodb:
+      uri: mongodb://user:user@localhost:27017/risk?authSource=risk&readPreference=primary&appname=MongoDB%20Compass&ssl=false
+  thymeleaf:
+    cache: false
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      batch-size: 4096
+    consumer:
+      group-id: foos
+      bootstrap-servers: 127.0.0.1:9092
+
+logging:
+  level:
+    org.springframework.data.mongodb: debug
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            client:
+              WIRE: trace
+elasticsearch:
+  url: http://127.0.0.1:9200
+ip:
+  db:
+    path: src\main\resources\ip\ip2region.db
