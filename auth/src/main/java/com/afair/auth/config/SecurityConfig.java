@@ -1,5 +1,6 @@
 package com.afair.auth.config;
 
+import com.afair.auth.filter.JwtAuthorizationFilter;
 import com.afair.auth.security.RestAuthenticationEntryPoint;
 import com.afair.auth.security.RestfulAccessDeniedHandler;
 import org.springframework.context.annotation.Bean;
@@ -19,13 +20,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
+        http.httpBasic().and()
+                .cors().and()
+                .csrf().disable()
                 .authorizeRequests()
                 //保证
+                .antMatchers("/authentication/*").permitAll()
                 .antMatchers("/test/task1").hasRole("ADMIN")
                 .antMatchers("*/test/task2").authenticated()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
+                .addFilter(new JwtAuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling().accessDeniedHandler(restfulAccessDeniedHandler())
