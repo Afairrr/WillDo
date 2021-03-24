@@ -20,6 +20,9 @@
         <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
         <knife4j-spring-boot-starter.version>3.0.2</knife4j-spring-boot-starter.version>
         <junit.version>4.13.1</junit.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
+        <druid.version>1.1.22</druid.version>
+        <mysql.version>8.0.15</mysql.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -51,6 +54,21 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -70,16 +88,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>aliyun</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>oss-public</id>
-            <url>https://oss.sonatype.org/content/repositories/public</url>
-        </repository>
-    </repositories>
 
 </project>

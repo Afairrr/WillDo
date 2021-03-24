@@ -1,5 +1,6 @@
 package com.afair.auth.commons.utils;
 
+import com.afair.auth.commons.constants.RedisConstants;
 import com.afair.auth.commons.constants.SecurityConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

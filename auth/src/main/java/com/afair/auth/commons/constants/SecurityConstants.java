@@ -44,9 +44,11 @@ public final class SecurityConstants {
     public final static String[] SWAGGER_WHITELIST = {
             "/swagger-ui.html",
             "/swagger-ui/*",
-            "/swagger-resource/*",
-            "v2/api-docs",
-            "v3/api-docs",
+            "/doc.html",
+            "/doc/*",
+            "/swagger-resources/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
             "/webjars/**"
     };
 
