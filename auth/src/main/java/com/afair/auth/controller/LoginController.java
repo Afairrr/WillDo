@@ -32,4 +32,11 @@ public class LoginController {
         String token = loginService.createToken(request);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
+
+    @PostMapping("/logout")
+    @ApiOperation("退出")
+    public ResponseEntity<Void> logout() {
+        loginService.removeToken();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

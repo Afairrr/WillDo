@@ -13,4 +13,9 @@ public interface LoginService {
      * @return
      */
     String createToken(UserLoginRequest request);
+
+    /**
+     * 移除token
+     */
+    void removeToken();
 }

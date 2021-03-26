@@ -1,6 +1,7 @@
 package com.afair.auth.service.impl;
 
 import com.afair.auth.commons.constants.RedisConstants;
+import com.afair.auth.commons.utils.CurrentUserUtils;
 import com.afair.auth.commons.utils.JwtTokenUtils;
 import com.afair.auth.entity.JwtUser;
 import com.afair.auth.entity.User;
@@ -13,7 +14,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,13 +25,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LoginServiceImpl implements LoginService {
     private final StringRedisTemplate redisTemplate;
+    private final CurrentUserUtils currentUserUtils;
+
     @Override
     public String createToken(UserLoginRequest request) {
         User user = User.builder()
                 .id(1L)
                 .userName(request.getUsername())
                 .password(request.getPassword())
-                .userRoles(new UserRole(null,null,"1"))
+                .userRoles(new UserRole(null, null, "1"))
                 .build();
         JwtUser jwtUser = new JwtUser(user);
         List<String> authorizations = jwtUser.getAuthorities()
@@ -39,7 +41,12 @@ public class LoginServiceImpl implements LoginService {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         String token = JwtTokenUtils.createToken(user.getUserName(), user.getId().toString(), authorizations, request.isRememberMe());
-        redisTemplate.opsForValue().set(RedisConstants.USER_KEY +user.getId().toString(),token);
+        redisTemplate.opsForValue().set(RedisConstants.USER_KEY + user.getId().toString(), token);
         return token;
+    }
+
+    @Override
+    public void removeToken() {
+        redisTemplate.delete(RedisConstants.USER_KEY + currentUserUtils.getCurrentUser().getId());
     }
 }
