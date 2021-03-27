@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SecurityConstants.SYSTEM_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(),stringRedisTemplate))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), stringRedisTemplate))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling().accessDeniedHandler(restfulAccessDeniedHandler())

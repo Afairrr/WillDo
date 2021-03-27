@@ -16,7 +16,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         response.setContentType("application/json; charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Cache-Control","no-cache");
+        response.setHeader("Cache-Control", "no-cache");
         response.getWriter().println("需要登录");
         response.getWriter().flush();
     }

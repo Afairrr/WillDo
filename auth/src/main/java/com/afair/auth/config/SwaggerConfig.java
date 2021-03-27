@@ -36,7 +36,7 @@ public class SwaggerConfig {
     }
 
     private List<SecurityScheme> securitySchemes() {
-        return Collections.singletonList(new ApiKey("JWT", SecurityConstants.TOKEN_HEADER, "header"));
+        return Collections.singletonList(new ApiKey(SecurityConstants.TOKEN_TYPE, SecurityConstants.TOKEN_HEADER, "header"));
     }
 
     private List<SecurityContext> securityContext() {
@@ -50,7 +50,7 @@ public class SwaggerConfig {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Collections.singletonList(new SecurityReference("JWT",authorizationScopes));
+        return Collections.singletonList(new SecurityReference(SecurityConstants.TOKEN_TYPE, authorizationScopes));
     }
 
     private ApiInfo apiInfo() {

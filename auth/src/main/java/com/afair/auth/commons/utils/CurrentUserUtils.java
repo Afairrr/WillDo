@@ -18,13 +18,13 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 public class CurrentUserUtils {
     private final UserService userService;
 
-    public User getCurrentUser(){
-       return userService.findUserByUserName(getUserName());
+    public User getCurrentUser() {
+        return userService.findUserByUserName(getUserName());
     }
 
-    private String getUserName(){
+    private String getUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication!=null&&authentication.getPrincipal()!=null){
+        if (authentication != null && authentication.getPrincipal() != null) {
             return (String) authentication.getPrincipal();
         }
         return null;

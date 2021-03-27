@@ -8,9 +8,11 @@ import com.afair.auth.entity.User;
 import com.afair.auth.entity.UserRole;
 import com.afair.auth.entity.request.UserLoginRequest;
 import com.afair.auth.service.LoginService;
+import com.afair.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +28,24 @@ import java.util.stream.Collectors;
 public class LoginServiceImpl implements LoginService {
     private final StringRedisTemplate redisTemplate;
     private final CurrentUserUtils currentUserUtils;
+    private final UserService userService;
 
     @Override
     public String createToken(UserLoginRequest request) {
+        User findUser = userService.findUserByUserName(request.getUsername());
+        if (!userService.check(findUser.getPassword(), request.getPassword())) {
+            throw new BadCredentialsException("The username or password is not correct");
+        }
         User user = User.builder()
-                .id(1L)
+                .id(findUser.getId())
                 .userName(request.getUsername())
                 .password(request.getPassword())
                 .userRoles(new UserRole(null, null, "1"))
                 .build();
         JwtUser jwtUser = new JwtUser(user);
+        if (!jwtUser.isEnabled()) {
+            throw new BadCredentialsException("User is forbidden to login");
+        }
         List<String> authorizations = jwtUser.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)

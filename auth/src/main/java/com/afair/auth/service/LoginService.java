@@ -9,6 +9,7 @@ import com.afair.auth.entity.request.UserLoginRequest;
 public interface LoginService {
     /**
      * 创建token
+     *
      * @param request
      * @return
      */

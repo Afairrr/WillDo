@@ -28,7 +28,7 @@ public class LoginController {
 
     @ApiOperation("登录")
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginRequest request){
+    public ResponseEntity<String> login(@RequestBody UserLoginRequest request) {
         String token = loginService.createToken(request);
         return new ResponseEntity<>(token, HttpStatus.OK);
     }

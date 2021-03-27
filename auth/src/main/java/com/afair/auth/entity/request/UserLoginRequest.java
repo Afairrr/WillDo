@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * 登录的请求参数
+ *
  * @author WangBing
  * @date 2021/3/23 10:54
  */
@@ -21,4 +22,5 @@ public class UserLoginRequest {
      * 记住我
      */
     private boolean rememberMe;
+
 }

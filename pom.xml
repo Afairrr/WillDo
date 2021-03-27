@@ -5,12 +5,14 @@
 
     <groupId>com.afair</groupId>
     <artifactId>global</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>global</name>
     <description>Demo project for Spring Boot</description>
     <modules>
         <module>mongoDD</module>
         <module>auth</module>
+        <module>commons</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -70,7 +70,7 @@ public class User extends AbstractAuditBase {
     public List<SimpleGrantedAuthority> getRoles() {
         String roleListStr = userRoles.getRoleList();
         List<String> roleList = Arrays.asList(roleListStr.split(","));
-        roleList.forEach(role->roleList.set(roleList.indexOf(role),RoleTypeEnum.getNameById(role)));
+        roleList.forEach(role -> roleList.set(roleList.indexOf(role), RoleTypeEnum.getNameById(role)));
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         roleList.forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role)));
         return authorities;
