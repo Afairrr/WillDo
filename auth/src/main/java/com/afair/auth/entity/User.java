@@ -64,15 +64,16 @@ public class User extends AbstractAuditBase {
     private Boolean enabled;
 
     @TableField(exist = false)
-    @ApiModelProperty(value = "对应角色信息")
+    @ApiModelProperty(value = "用户角色关联信息")
     private UserRole userRoles;
 
+    @TableField(exist = false)
+    @ApiModelProperty(value = "角色信息")
+    private List<Role> roles;
+
     public List<SimpleGrantedAuthority> getRoles() {
-        String roleListStr = userRoles.getRoleList();
-        List<String> roleList = Arrays.asList(roleListStr.split(","));
-        roleList.forEach(role -> roleList.set(roleList.indexOf(role), RoleTypeEnum.getNameById(role)));
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        roleList.forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role)));
+        roles.forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())));
         return authorities;
     }
 }

@@ -26,6 +26,8 @@ public class UserRegisterRequest {
     public User toUser() {
         return User.builder().userName(this.username)
                 .password(this.password)
-                .fullName(this.fullName).build();
+                .fullName(this.fullName)
+                .enabled(true)
+                .build();
     }
 }

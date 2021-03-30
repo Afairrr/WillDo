@@ -1,16 +1,23 @@
 package com.afair.auth.service.impl;
 
+import com.afair.auth.entity.Role;
 import com.afair.auth.entity.User;
+import com.afair.auth.entity.UserRole;
 import com.afair.auth.entity.request.UserRegisterRequest;
+import com.afair.auth.entity.request.UserUpdateRequest;
+import com.afair.auth.enums.RoleTypeEnum;
+import com.afair.auth.mapper.RoleMapper;
 import com.afair.auth.mapper.UserMapper;
+import com.afair.auth.mapper.UserRoleMapper;
 import com.afair.auth.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.google.common.collect.ImmutableMap;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Optional;
 
@@ -22,6 +29,8 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
+    private final RoleMapper roleMapper;
+    private final UserRoleMapper userRoleMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final static String USERNAME = "username:";
 
@@ -32,17 +41,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertUser(UserRegisterRequest userRegisterRequest) {
+    @Transactional(rollbackFor = Exception.class)
+    public void insertUser(UserRegisterRequest userRegisterRequest) {
         User user = userRegisterRequest.toUser();
         findUserByUserName(user.getUserName());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
-        return userMapper.insert(user);
+        userMapper.insert(user);
+        //默认注册的角色为用户
+        Role userRole = roleMapper.selectOne(new QueryWrapper<Role>().eq("name", RoleTypeEnum.USER.getName()));
+        userRoleMapper.insert(new UserRole(user.getId(),userRole.getId().toString()));
     }
 
     @Override
-    public int updateUser(User user) {
-        return userMapper.updateById(user);
+    public void updateUser(UserUpdateRequest userUpdateRequest) {
+        User user = findUserByUserName(userUpdateRequest.getUsername());
+        if(ObjectUtils.isEmpty(userUpdateRequest.getFullName())){
+            user.setFullName(userUpdateRequest.getFullName());
+        }
+        if(ObjectUtils.isEmpty(userUpdateRequest.getPassword())){
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        if(ObjectUtils.isEmpty(userUpdateRequest.getEnabled())){
+            user.setEnabled(userUpdateRequest.getEnabled());
+        }
+        userMapper.updateById(user);
     }
 
     @Override

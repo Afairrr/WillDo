@@ -7,15 +7,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Date;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
+ * 角色表
  * @author WangBing
- * @date 2021/3/23 14:01
+ * @date 2021/3/29 14:06
  */
 @ApiModel(value = "角色表")
 @Data

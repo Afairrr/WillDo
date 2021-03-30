@@ -11,34 +11,32 @@ public enum RoleTypeEnum {
     /**
      * 用户
      */
-    USER("1", "USER", "用户"),
+    USER("USER", "用户"),
     /**
      * 临时用户
      */
-    TEMP_USER("2", "TEMP_USER", "临时用户"),
+    TEMP_USER("TEMP_USER", "临时用户"),
     /**
      * 管理者
      */
-    MANAGER("3", "MANAGER", "管理者"),
+    MANAGER("MANAGER", "管理者"),
     /**
      * 超级管理员
      */
-    ADMIN("4", "ADMIN", "超级管理员");
+    ADMIN("ADMIN", "超级管理员");
 
-    private final String roleId;
     private final String name;
     private final String desc;
 
-    RoleTypeEnum(String roleId, String name, String desc) {
-        this.roleId = roleId;
+    RoleTypeEnum(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }
 
-    public static String getNameById(String roleId) {
+    public static String getNameById(String name) {
         RoleTypeEnum[] roleTypeEnums = RoleTypeEnum.values();
         for (RoleTypeEnum roleTypeEnum : roleTypeEnums) {
-            if (roleTypeEnum.roleId.equals(roleId)) {
+            if (roleTypeEnum.name.equals(name)) {
                 return roleTypeEnum.name;
             }
         }

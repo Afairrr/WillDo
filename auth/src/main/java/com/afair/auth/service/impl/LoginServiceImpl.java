@@ -8,6 +8,7 @@ import com.afair.auth.entity.User;
 import com.afair.auth.entity.UserRole;
 import com.afair.auth.entity.request.UserLoginRequest;
 import com.afair.auth.service.LoginService;
+import com.afair.auth.service.UserRoleService;
 import com.afair.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class LoginServiceImpl implements LoginService {
     private final StringRedisTemplate redisTemplate;
     private final CurrentUserUtils currentUserUtils;
     private final UserService userService;
+    private final UserRoleService userRoleService;
 
     @Override
     public String createToken(UserLoginRequest request) {
@@ -40,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
                 .id(findUser.getId())
                 .userName(request.getUsername())
                 .password(request.getPassword())
-                .userRoles(new UserRole(null, null, "1"))
+                .roles(userRoleService.getRoleByUser(findUser.getId()))
                 .build();
         JwtUser jwtUser = new JwtUser(user);
         if (!jwtUser.isEnabled()) {
