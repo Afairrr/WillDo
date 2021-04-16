@@ -53,9 +53,19 @@ public final class SecurityConstants {
     };
 
     /**
+     * ADMIN的白名单
+     */
+    public final static String[] ADMIN_WHITELIST = {
+            "/actuator/**",
+            "/instances/**"
+    };
+
+    /**
      * 系统内白名单
      */
     public final static String[] SYSTEM_WHITELIST = {
-            "/authentication/*"
+            "/authentication/login",
+            "/authentication/logout",
+            "/user/register"
     };
 }

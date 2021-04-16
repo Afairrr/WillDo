@@ -26,7 +26,7 @@ public class UserRole extends AbstractAuditBase {
     /**
      * 角色和用户关联表id
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "角色和用户关联表id")
     private Long id;
 

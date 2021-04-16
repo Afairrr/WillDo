@@ -3,12 +3,18 @@ server:
   servlet:
     context-path: /auth
 spring:
+  application:
+    name: WillDo-auth
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/will_do?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: Afair@123
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     tomcat:
       max-active: 20
       max-idle: 20
@@ -33,5 +39,14 @@ spring:
         min-idle: 0
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*.xml
-
-
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    com.afair.auth.mapper: debug

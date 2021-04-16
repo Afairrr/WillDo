@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 /**
@@ -25,13 +26,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @ApiModel(value = "用户表")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Builder
 @TableName(value = "sys_user")
 public class User extends AbstractAuditBase {
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.INPUT)
+    @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "主键id")
     private Long id;
 

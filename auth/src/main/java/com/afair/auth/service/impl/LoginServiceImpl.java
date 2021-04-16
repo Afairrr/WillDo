@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String createToken(UserLoginRequest request) {
         User findUser = userService.findUserByUserName(request.getUsername());
-        if (!userService.check(findUser.getPassword(), request.getPassword())) {
+        if (!userService.check(request.getPassword(), findUser.getPassword())) {
             throw new BadCredentialsException("The username or password is not correct");
         }
         User user = User.builder()

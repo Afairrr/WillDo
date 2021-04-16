@@ -11,6 +11,8 @@ import com.afair.auth.mapper.UserMapper;
 import com.afair.auth.mapper.UserRoleMapper;
 import com.afair.auth.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.collect.ImmutableMap;
+import exceptions.UserNameAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -44,7 +46,10 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = Exception.class)
     public void insertUser(UserRegisterRequest userRegisterRequest) {
         User user = userRegisterRequest.toUser();
-        findUserByUserName(user.getUserName());
+        User findUser = userMapper.selectOne(new QueryWrapper<User>().eq("user_name", user.getUserName()));
+        if(findUser!=null){
+            throw new UserNameAlreadyExistException(ImmutableMap.of(USERNAME,findUser));
+        }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userMapper.insert(user);
         //默认注册的角色为用户
